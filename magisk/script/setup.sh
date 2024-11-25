@@ -1,6 +1,6 @@
 #!/system/bin/sh
 #
-# Copyright (C) 2021-2022 Matt Yang
+# Copyright (C) 2021-2022 Gt Aswin
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -72,10 +72,7 @@ install_uperf() {
 }
 
 echo ""
-echo "* Uperf https://github.com/yc9559/uperf/"
-echo "* Author: Matt Yang"
-echo "* Version: v3(22.09.04)"
-echo ""
-
+echo "* Uperf https://github.com/gtaswin/Uperf-BeastMode/"
+echo "* Author: Gt Aswin"
 echo "- Installing uperf"
 install_uperf
