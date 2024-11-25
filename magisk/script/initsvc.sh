@@ -20,10 +20,10 @@ BASEDIR="$(dirname $(readlink -f "$0"))"
 . $BASEDIR/libcommon.sh
 . $BASEDIR/libuperf.sh
 
-# create busybox symlinks
+# Create busybox symlinks
 $BIN_PATH/busybox/busybox --install -s $BIN_PATH/busybox
 
-# support vtools
+# Support vtools
 cp -af $SCRIPT_PATH/vtools_powercfg.sh /data/powercfg.sh
 cp -af $SCRIPT_PATH/vtools_powercfg.sh /data/powercfg-base.sh
 cp -af $SCRIPT_PATH/powercfg.json /data/powercfg.json
@@ -31,7 +31,15 @@ chmod 755 /data/powercfg.sh
 chmod 755 /data/powercfg-base.sh
 echo "sh $SCRIPT_PATH/powercfg_main.sh \"\$1\"" >>/data/powercfg.sh
 
+# Wait for login
 wait_until_login
 
+# Kernel Tweaks
+sh $SCRIPT_PATH/kernel_tweaks.sh > $USER_PATH/kernel_tweaks.log || \
+    echo "kernel_tweaks.sh failed, continuing to powercfg_once.sh" >> $USER_PATH/kernel_tweaks.log
+
+# Ensure powercfg_once.sh always runs
 sh $SCRIPT_PATH/powercfg_once.sh
+
+# Start Uperf
 uperf_start
