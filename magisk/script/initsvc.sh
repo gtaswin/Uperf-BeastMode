@@ -35,11 +35,14 @@ echo "sh $SCRIPT_PATH/powercfg_main.sh \"\$1\"" >>/data/powercfg.sh
 wait_until_login
 
 # Kernel Tweaks
-sh $SCRIPT_PATH/kernel_tweaks.sh > $USER_PATH/kernel_tweaks.log || \
-    echo "kernel_tweaks.sh failed, continuing to powercfg_once.sh" >> $USER_PATH/kernel_tweaks.log
+if ! sh $SCRIPT_PATH/kernel_tweaks.sh > $USER_PATH/kernel_tweaks.log; then
+    echo "Kernel tweaks failed" >> $USER_PATH/kernel_tweaks.log
+fi
 
 # Ensure powercfg_once.sh always runs
-sh $SCRIPT_PATH/powercfg_once.sh
+if ! sh $SCRIPT_PATH/powercfg_once.sh > $USER_PATH/powercfg_once.log; then
+    echo "powercfg_once failed" >> $USER_PATH/powercfg_once.log
+fi
 
 # Start Uperf
 uperf_start
