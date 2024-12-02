@@ -1,7 +1,7 @@
 id=uperf
-name=Uperf
+name=Uperf-BeastMode
 version=v3
 versionCode=251124
-author=Gt Aswin
+author=Gta
 description=Userspace performance controller for android. Repo: https://github.com/gtaswin/Uperf-BeastMode/
 updateJson=https://github.com/gtaswin/Uperf-BeastMode/raw/master/version.json
